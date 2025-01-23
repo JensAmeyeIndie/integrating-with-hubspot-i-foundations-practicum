@@ -1,0 +1,29 @@
+//- doctype html
+html
+    head
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1= title
+        .form-container
+            form(action="/update-cobj", method="POST")
+                input(type="hidden", name="id", value=data ? data.id : '')
+
+                .input-group
+                    label(for="name") Name:
+                    input#name(type="text", name="name", value=data && data.properties ? data.properties.name : '', required)
+
+                .input-group
+                    label(for="status") Status:
+                    input#status(type="text", name="status", value=data && data.properties ? data.properties.status : '', required)
+
+                .input-group
+                    label(for="price") Price:
+                    input#price(type="text", name="price", value=data && data.properties ? data.properties.price : '', required)
+
+                .submit-group
+                    button(type="submit")= data && data.properties ? 'Update Laptop' : 'Add Laptop'
+
+            .return-link
+                a(href='/') Return to Home Page
